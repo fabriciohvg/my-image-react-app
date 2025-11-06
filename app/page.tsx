@@ -62,7 +62,7 @@ export default function Home() {
         type="file"
         ref={inputRef}
         onChange={handleFileChange}
-        className="px-2 py-1 bg-white hover:bg-gray-100 border border-gray-300 rounded cursor-pointer"
+        className="px-2 py-1 bg-white dark:text-background hover:bg-gray-100 border border-gray-300 rounded cursor-pointer"
         accept="image/*"
         multiple
       />
