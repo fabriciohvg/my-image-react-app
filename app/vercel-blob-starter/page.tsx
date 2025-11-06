@@ -80,8 +80,10 @@ const VercelBlob = () => {
       return;
     }
 
-    if (file.size / 1024 / 1024 > 50) {
-      toast.error("A imagem é muito grande, o tamanho máximo permitido é 50MB");
+    if (file.size / 1024 / 1024 > 10) {
+      toast.error(
+        "A imagem é muito grande, o tamanho máximo permitido é 10MB."
+      );
       return;
     }
 
@@ -125,7 +127,7 @@ const VercelBlob = () => {
               <Image
                 src={preview}
                 alt={preview}
-                className="h-full w-full rounded-md object-cover"
+                className="h-full w-full rounded object-cover"
                 fill
               />
             )}
