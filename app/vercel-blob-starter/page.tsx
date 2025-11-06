@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { upload } from "@vercel/blob/client";
 import Image from "next/image";
+import Link from "next/link";
 
 const VercelBlob = () => {
   const [preview, setPreview] = useState<string | null>(null);
@@ -18,6 +19,7 @@ const VercelBlob = () => {
       URL.revokeObjectURL(preview);
     }
     setPreview(null);
+    setProgress(0);
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -34,24 +36,31 @@ const VercelBlob = () => {
           },
         });
 
-        toast((t: { id: string }) => (
-          <div className="relative">
-            <div className="p-2">
-              <p className="font-semibold text-gray-900">Upload concluído!</p>
-              <p className="mt-1 text-sm text-gray-500">
-                Seu arquivo foi salo e pode ser acessado pelo link{" "}
-                <a
+        toast(
+          (t) => (
+            <span className="text-sm font-sans flex flex-col gap-2">
+              <div>
+                Imagem enviada com <b>sucesso</b>.
+              </div>
+              <div className="flex gap-2">
+                <Link
+                  className="p-1 cursor-pointer border rounded bg-blue-200 border-blue-300 hover:border-blue-400"
                   href={blob.url}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-gray-900 underline"
                 >
-                  {blob.url}
-                </a>
-              </p>
-            </div>
-          </div>
-        ));
+                  Visualizar
+                </Link>
+                <button
+                  className="p-1 cursor-pointer border rounded bg-gray-50 border-gray-200 hover:border-gray-300"
+                  onClick={() => toast.dismiss(t.id)}
+                >
+                  Fechar
+                </button>
+              </div>
+            </span>
+          ),
+          { duration: 5000 }
+        );
       } catch (error) {
         if (error instanceof Error) {
           toast.error(error.message);
@@ -86,8 +95,7 @@ const VercelBlob = () => {
       <h1 className="font-semibold text-center text-4xl">Vercel Blob</h1>
       <div className="border p-4 rounded border-gray-200 flex flex-col w-full gap-2">
         <h2 className="font-medium text-xl ml-1">Upload an image</h2>
-
-        <form className="" onSubmit={handleSubmit}>
+        <form className="grid gap-2" onSubmit={handleSubmit}>
           <input
             id="image-upload"
             name="image-upload"
