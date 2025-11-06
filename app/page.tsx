@@ -54,7 +54,7 @@ export default function Home() {
   }, [selectedFiles]);
 
   return (
-    <div className="mx-auto max-w-lg my-4 p-6 flex flex-col gap-4 rounded-md border border-gray-300">
+    <div className="font-sans mx-auto max-w-lg my-4 p-6 flex flex-col gap-4 rounded-md border border-gray-300">
       <h1 className="text-2xl font-semibold tracking-tight">
         Image React App 🖼️{" "}
       </h1>
@@ -71,7 +71,7 @@ export default function Home() {
         {selectedFiles.length > 0 ? (
           selectedFiles.map((file) => (
             <div
-              className="rounded outline-1 outline-gray-200 hover:outline-gray-400 hover:cursor-pointer outline-offset-2"
+              className="rounded hover:cursor-pointer bg-white hover:bg-amber-50 border border-gray-200 hover:border-gray-400 p-0.5"
               key={file.name}
             >
               <div
@@ -88,7 +88,7 @@ export default function Home() {
               <p className="text-gray-500 text-sm tracking-tight p-1 text-nowrap overflow-hidden text-ellipsis">
                 {file.name}
                 {file.width && file.height && (
-                  <span className="text-gray-400 text-xs block">
+                  <span className="text-gray-400 text-xs block tabular-nums">
                     {file.width} × {file.height}
                   </span>
                 )}
