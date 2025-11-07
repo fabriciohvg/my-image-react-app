@@ -166,6 +166,9 @@ const VercelBlob = () => {
           </div>
         </form>
       </div>
+      <div className="border p-4 rounded border-gray-200 flex flex-col w-full gap-2">
+        <h2>Imagens</h2>
+      </div>
       <div className="">
         <p className="text-center">
           Vercel Blob demo. Built with Next.js App Router
